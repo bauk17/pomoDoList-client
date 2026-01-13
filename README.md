@@ -1,73 +1,116 @@
-# React + TypeScript + Vite
+# 🍅 PomoDoList
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **Todo List with built-in Pomodoro and lofi music**, designed for deep focus, simplicity, and clean frontend architecture.
 
-Currently, two official plugins are available:
+This is a personal project created to practice **React, custom hooks, and separation of concerns**, with a strong focus on UX for productivity.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### ✅ Todo List
 
-## Expanding the ESLint configuration
+- Create, edit, and delete tasks
+- Persistence via **localStorage** (no login required)
+- **Repository Pattern** for data access (ready for a future API)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ⏱️ Pomodoro per task
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Start a focus session directly from a task
+- Dedicated Pomodoro overlay
+- Clear state management (focus / break / paused)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🎧 Music Player (Lofi)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Music player fully independent from the Pomodoro
+- Curated **copyright-free lofi tracks**
+- Controls:
+
+  - Play / Pause
+  - Next / Previous track
+  - Interactive progress bar (seek)
+  - Volume control (drag + mouse wheel)
+
+- Real-time progress synced with audio playback
+
+---
+
+## 🧠 Architecture
+
+The project is structured to **avoid tight coupling** and allow easy future expansion:
+
+```
+src/
+├─ components/
+│  ├─ musicPlayer/
+│  ├─ pomodoro/
+│  └─ todos/
+│
+├─ hooks/
+│  └─ useMusicPlayer.ts
+│
+├─ data/
+│  └─ lofiTracks.ts
+│
+├─ repositories/
+│  ├─ TodoRepository.ts
+│  └─ LocalTodoRepository.ts
+│
+├─ types/
+│  └─ todo.ts
+│
+└─ utils/
+   └─ storage.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Key decisions
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Hooks handle business logic** (audio, timers, state)
+- **Components focus only on UI**
+- Pomodoro and Music Player are **fully decoupled**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🛠️ Tech Stack
+
+- React
+- TypeScript
+- Styled-components
+- React Hooks
+- LocalStorage API
+- HTML Audio API
+
+---
+
+## 🚀 Getting Started
+
+```bash
+npm install
+npm run dev
 ```
+
+---
+
+## 🎯 Why This Project Exists
+
+This project was built to go beyond simple CRUD examples and explore **real frontend problems** such as:
+
+- Managing complex state without external libraries
+- Designing reusable and decoupled components
+- Handling real-time features (audio playback, timers, progress tracking)
+- Applying clean architecture concepts in a frontend context
+
+This project also serves as a **portfolio piece** to demonstrate problem-solving, architectural thinking, and attention to user experience.
+
+---
+
+## 🔮 Future Improvements
+
+- Pomodoro statistics per task
+- Session history
+- Theme support (dark / light)
+- Mobile-first layout
+
+---
+
+Built with focus and lofi 🎧
