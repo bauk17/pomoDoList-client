@@ -1,6 +1,6 @@
 import * as styled from "./styles";
 import { FaPause, FaPlay } from "react-icons/fa6";
-import { FaVolumeDown, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 import { IoMdSkipBackward, IoMdSkipForward } from "react-icons/io";
 import { useMusicPlayer } from "../../hooks/useMusicPlayer";
 import { useEffect, useRef, useState } from "react";

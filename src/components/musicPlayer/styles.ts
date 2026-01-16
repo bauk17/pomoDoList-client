@@ -15,31 +15,45 @@ export const MusicPlayerWrapper = styled.div`
 export const MusicPlayerBar = styled.div`
   background-color: white;
   width: 30vw;
-  height: 4px;
+  height: 6px;
   border-radius: 15px;
   margin-top: 30px;
+  cursor: pointer;
 `;
 
 export const MusicPlayerProgressBar = styled.div`
   width: 0vw;
   border-radius: 4px;
-  height: 4px;
+  height: 6px;
   background-color: #05458a;
   position: relative;
+  cursor: pointer;
+
+  &:hover {
+    height: 7px;
+  }
 `;
 export const MusicPlayerBarButton = styled.div`
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   top: -6px;
   right: 0;
   border-radius: 50%;
   background-color: #05458a;
+  cursor: pointer;
+
+  transition: 0.2s all ease;
+  &:hover {
+    height: 21px;
+    width: 21px;
+    top: -7px;
+  }
 `;
 
 export const MusicPlayerControllers = styled.div`
   color: white;
-  margin-top: 20px;
+  margin-top: 30px;
   width: 150px;
   display: flex;
   justify-content: space-between;
