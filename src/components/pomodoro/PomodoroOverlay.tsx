@@ -1,109 +1,71 @@
-import { useEffect, useState } from "react";
 import * as styled from "./styles";
 import MusicPlayer from "../musicPlayer/MusicPlayer";
-import { lofiTracks } from "../../data/lofiTracks";
+import { IoIosArrowForward } from "react-icons/io";
+import { ThemeProvider } from "styled-components";
+
+import { usePomodoro } from "../../hooks/usePomodoro";
+import { usePomodoroTheme } from "../../hooks/usePomodoroTheme";
+import ThemePicker from "./PomodoroChangeTheme";
 
 type Props = {
   taskTitle: string;
+  onClose: () => void;
 };
 
-type PomodoroState = {
-  taskTitle: string;
-  mode: "focus" | "break";
-  status: "running" | "paused" | "finished";
-  remainingSeconds: number;
-};
+export default function PomodoroOverlay({ taskTitle, onClose }: Props) {
+  const pomodoro = usePomodoro(taskTitle);
 
-export default function PomodoroOverlay({ taskTitle }: Props) {
-  const [pomodoro, setPomodoro] = useState<PomodoroState | null>(null);
+  const { theme, setMode } = usePomodoroTheme();
 
-  function startPomodoro() {
-    setPomodoro({
-      taskTitle: taskTitle,
-      mode: "focus",
-      status: "running",
-      remainingSeconds: 25 * 60,
-    });
-  }
-
-  function pausePomodoro() {
-    setPomodoro((p) => p && { ...p, status: "paused" });
-  }
-
-  function resumePomodoro() {
-    setPomodoro((p) => p && { ...p, status: "running" });
+  if (pomodoro.mode !== undefined) {
+    setMode(pomodoro.mode);
   }
 
   function formatTime(seconds: number) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-
-    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(
-      2,
-      "0"
-    )}`;
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
   }
 
-  useEffect(() => {
-    if (!pomodoro || pomodoro.status !== "running") return;
-
-    const interval = setInterval(() => {
-      setPomodoro((prev) => {
-        if (!prev) return null;
-
-        if (pomodoro.mode == "break") alert("break");
-
-        if (prev.remainingSeconds <= 1) {
-          const isFocus = prev.mode === "focus";
-
-          return {
-            ...prev,
-            mode: isFocus ? "break" : "focus",
-            remainingSeconds: isFocus ? 5 * 60 : 25 * 60,
-            status: "running",
-          };
-        }
-
-        return {
-          ...prev,
-          remainingSeconds: prev.remainingSeconds - 1,
-        };
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [pomodoro?.status]);
-
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <ThemePicker mode={pomodoro.mode} />
+
       <styled.PomodoroWrapper>
+        <styled.PomodoroCloseButton onClick={onClose}>
+          Back <IoIosArrowForward size={30} style={{ marginLeft: 10 }} />
+        </styled.PomodoroCloseButton>
+
         <styled.PomodoroContainer>
           <styled.PomodoroTask>
-            <span style={{ marginBottom: 40, fontSize: 25 }}>
-              {pomodoro?.mode === "focus" ? "Focus time" : "Break time"}
+            <span style={{ marginBottom: 40, fontSize: 35 }}>
+              {pomodoro.mode === "focus" ? "Focus time" : "Break time"}
             </span>
-            <span style={{ fontSize: 60 }}>Task</span>
+            <span style={{ fontSize: 45 }}>Task</span>
             <span style={{ fontSize: 40, marginTop: 20 }}>{taskTitle}</span>
           </styled.PomodoroTask>
+
           <styled.PomodoroTimer>
-            {pomodoro ? formatTime(pomodoro.remainingSeconds) : "25:00"}
+            {formatTime(pomodoro.remainingSeconds)}
           </styled.PomodoroTimer>
+
           <styled.PomodoroButton
             onClick={() => {
-              if (!pomodoro) startPomodoro();
-              else if (pomodoro.status === "running") pausePomodoro();
-              else resumePomodoro();
+              if (!pomodoro.pomodoro) pomodoro.start();
+              else if (pomodoro.isRunning) pomodoro.pause();
+              else pomodoro.resume();
             }}
           >
-            {!pomodoro
+            {!pomodoro.pomodoro
               ? "Start"
-              : pomodoro.status === "running"
+              : pomodoro.isRunning
               ? "Pause"
               : "Resume"}
           </styled.PomodoroButton>
         </styled.PomodoroContainer>
+
         <MusicPlayer />
       </styled.PomodoroWrapper>
-    </>
+    </ThemeProvider>
   );
 }

@@ -1,9 +1,21 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 /* background collors for PomodoroWrapper: #2AA0F5 | #eb666a | #94BBFA | #3082C1 (main) */
 
+const pulse = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 export const PomodoroWrapper = styled.div`
-  background-color: #205e8d;
+  background: ${({ theme }) => theme.background};
   position: absolute;
   display: flex;
   justify-content: center;
@@ -36,14 +48,14 @@ export const PomodoroTimer = styled.h1`
 `;
 
 export const PomodoroButton = styled.button`
-  font-size: 40px;
+  font-size: 28px;
   margin-top: 60px;
   border: 0;
-  width: 280px;
+  width: 240px;
   height: 80px;
   border-radius: 8px;
   text-align: center;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   opacity: 0.85;
 
   transition: 0.8s all ease;
@@ -61,4 +73,20 @@ export const PomodoroTask = styled.p`
   flex-direction: column;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
+`;
+
+export const PomodoroCloseButton = styled.button`
+  font-weight: 500;
+  position: absolute;
+  right: 400px;
+  border: 0;
+  background-color: transparent;
+  color: white;
+  font-size: 25px;
+  top: 70px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  animation: ${pulse} 4s ease-in-out infinite;
 `;
