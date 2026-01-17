@@ -2,7 +2,7 @@
 
 A **Todo List with built-in Pomodoro and lofi music**, designed for deep focus, simplicity, and clean frontend architecture.
 
-This is a personal project created to practice **React, custom hooks, and separation of concerns**, with a strong focus on UX for productivity.
+This is a personal project created to practice **React, custom hooks, Context API, and separation of concerns**, with a strong focus on **state management and real-world frontend architecture**.
 
 ---
 
@@ -10,34 +10,56 @@ This is a personal project created to practice **React, custom hooks, and separa
 
 ### ✅ Todo List
 
-- Create, edit, and delete tasks
-- Persistence via **localStorage** (no login required)
-- **Repository Pattern** for data access (ready for a future API)
+* Create, edit, and delete tasks
+* Persistence via **localStorage** (no login required)
+* **Repository Pattern** for data access (ready for a future API)
+
+---
 
 ### ⏱️ Pomodoro per task
 
-- Start a focus session directly from a task
-- Dedicated Pomodoro overlay
-- Clear state management (focus / break / paused)
+* Start a focus session directly from a task
+* Dedicated Pomodoro overlay
+* Clear state management:
+
+  * focus
+  * break
+  * paused
+* Pomodoro logic fully isolated in a custom hook
+
+---
+
+### 🎨 Dynamic Pomodoro Themes
+
+* Predefined theme presets for:
+
+  * Focus mode
+  * Break mode
+* Theme can be changed **in real time**
+* No page refresh required
+* Theme state managed globally via **React Context**
+* Automatic re-render using `styled-components` `ThemeProvider`
+* User preferences persisted via **localStorage**
+
+---
 
 ### 🎧 Music Player (Lofi)
 
-- Music player fully independent from the Pomodoro
-- Curated **copyright-free lofi tracks**
-- Controls:
+* Music player fully independent from Pomodoro and theme system
+* Curated **copyright-free lofi tracks**
+* Controls:
 
-  - Play / Pause
-  - Next / Previous track
-  - Interactive progress bar (seek)
-  - Volume control (drag + mouse wheel)
-
-- Real-time progress synced with audio playback
+  * Play / Pause
+  * Next / Previous track
+  * Interactive progress bar (seek)
+  * Volume control (drag + mouse wheel)
+* Real-time progress synced with audio playback
 
 ---
 
 ## 🧠 Architecture
 
-The project is structured to **avoid tight coupling** and allow easy future expansion:
+The project is structured to **scale without refactoring** and to keep responsibilities clearly separated:
 
 ```
 src/
@@ -46,39 +68,64 @@ src/
 │  ├─ pomodoro/
 │  └─ todos/
 │
+├─ context/
+│  └─ PomodoroThemeContext.tsx
+│
 ├─ hooks/
+│  ├─ usePomodoro.ts
+│  ├─ usePomodoroTheme.ts
 │  └─ useMusicPlayer.ts
 │
 ├─ data/
-│  └─ lofiTracks.ts
+│ └─ lofiTracks.ts
+│
+├─ themes/
+│  ├─ defaultPomodoroThemes.ts
+│  └─ pomodoroPresets.ts
 │
 ├─ repositories/
 │  ├─ TodoRepository.ts
 │  └─ LocalTodoRepository.ts
 │
 ├─ types/
-│  └─ todo.ts
+│  ├─ todo.ts
+│  ├─ Pomodoro.ts
+│  └─ PomodoroTheme.ts
 │
 └─ utils/
    └─ storage.ts
 ```
 
-### Key decisions
+---
 
-- **Hooks handle business logic** (audio, timers, state)
-- **Components focus only on UI**
-- Pomodoro and Music Player are **fully decoupled**
+## 🧩 Key Architectural Decisions
+
+* **Context API** used for global theme state
+* Theme logic centralized in `PomodoroThemeProvider`
+* Components never mutate theme directly
+* UI reacts automatically to state changes
+* `styled-components` ThemeProvider receives a reactive theme object
+* Pomodoro, Theme, and Music Player are **fully decoupled**
+* Hooks encapsulate business logic, components render UI only
+
+This avoids:
+
+* Manual refreshes
+* Prop drilling
+* State duplication
+* Tight coupling between features
 
 ---
 
 ## 🛠️ Tech Stack
 
-- React
-- TypeScript
-- Styled-components
-- React Hooks
-- LocalStorage API
-- HTML Audio API
+* React
+* TypeScript
+* Styled-components
+* React Context API
+* Custom Hooks
+* LocalStorage API
+* HTML Audio API
 
 ---
 
@@ -93,23 +140,24 @@ npm run dev
 
 ## 🎯 Why This Project Exists
 
-This project was built to go beyond simple CRUD examples and explore **real frontend problems** such as:
+This project was built to go beyond simple CRUD examples and explore **real frontend engineering problems**, such as:
 
-- Managing complex state without external libraries
-- Designing reusable and decoupled components
-- Handling real-time features (audio playback, timers, progress tracking)
-- Applying clean architecture concepts in a frontend context
+* Managing global state without external libraries
+* Designing reactive UI systems (themes, modes, overlays)
+* Separating domain logic from presentation
+* Persisting user preferences correctly
+* Building scalable architecture in React
 
-This project also serves as a **portfolio piece** to demonstrate problem-solving, architectural thinking, and attention to user experience.
+This project also serves as a **portfolio piece** to demonstrate architectural thinking, clean state management, and practical frontend decision-making.
 
 ---
 
 ## 🔮 Future Improvements
 
-- Pomodoro statistics per task
-- Session history
-- Theme support (dark / light)
-- Mobile-first layout
+* Pomodoro statistics per task
+* Session history
+* Mobile-first layout
+* Persist user preferences
 
 ---
 
