@@ -43,7 +43,7 @@ export function TodoItem({
       <styled.TodoTaskOptions>
         <styled.TodoTaskOptionButton>
           <img
-            src="/tomate.svg"
+            src="tomate.svg"
             onClick={() => onPomodoro(task.title)}
             width={25}
             height={25}

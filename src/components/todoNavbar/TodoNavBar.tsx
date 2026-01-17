@@ -12,7 +12,7 @@ export function TodoNavBar({ onInfoClick, howToUse }: Props) {
       <styled.NavBarWrapper>
         <styled.NavBarLogo>
           Pom
-          <img src="/tomate.svg" alt="tomate" width={30} height={30} />
+          <img src="tomate.svg" alt="tomate" width={30} height={30} />
           DoList
         </styled.NavBarLogo>
         <div style={{ display: "flex" }}>
@@ -32,7 +32,7 @@ export function TodoNavBar({ onInfoClick, howToUse }: Props) {
           >
             <h3 onClick={howToUse}>How to use it</h3>
             <img
-              src="/tomate.svg"
+              src="tomate.svg"
               alt="tomate"
               width={17}
               height={17}
