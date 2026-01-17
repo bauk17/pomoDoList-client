@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTodos } from "../../hooks/useTodos";
-import { FaRegTrashCan } from "react-icons/fa6";
-import { MdOutlineDone } from "react-icons/md";
+
 import * as styled from "./styles";
 import PomodoroOverlay from "../../components/pomodoro/PomodoroOverlay";
 import { TodoNavBar } from "../../components/todoNavbar/TodoNavBar";
