@@ -1,6 +1,6 @@
-# 🍅 PomoDoList
+# 🍅 PomoDoList 🔗 Live demo: https://pomodolist.online
 
-A **Todo List with built-in Pomodoro and lofi music**, designed for deep focus, simplicity, and clean frontend architecture.
+A **productivity app that combines task management, Pomodoro sessions, and lofi music** — built with a strong focus on clean frontend architecture.
 
 This is a personal project created to practice **React, custom hooks, Context API, and separation of concerns**, with a strong focus on **state management and real-world frontend architecture**.
 
@@ -35,6 +35,7 @@ This is a personal project created to practice **React, custom hooks, Context AP
 
   * Focus mode
   * Break mode
+  * Long Break mode
 * Theme can be changed **in real time**
 * No page refresh required
 * Theme state managed globally via **React Context**
@@ -129,13 +130,6 @@ This avoids:
 
 ---
 
-## 🚀 Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
 ---
 
 ## 🎯 Why This Project Exists
@@ -161,4 +155,4 @@ This project also serves as a **portfolio piece** to demonstrate architectural t
 
 ---
 
-Built with focus and lofi 🎧
+Built with focus and lofi 🎧 - Acess here: [(pomodolist.online)]
