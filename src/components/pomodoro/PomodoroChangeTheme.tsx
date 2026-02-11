@@ -4,7 +4,7 @@ import { usePomodoroTheme } from "../../hooks/usePomodoroTheme";
 import * as styled from "./stylesChangeTheme";
 
 type Props = {
-  mode: "focus" | "break";
+  mode: "focus" | "break" | "longbreak";
 };
 
 export default function ThemePicker({ mode }: Props) {
