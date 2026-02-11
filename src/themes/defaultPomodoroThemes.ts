@@ -4,11 +4,22 @@ export const defaultPomodoroThemes: Record<PomodoroMode, PomodoroTheme> = {
   focus: {
     background: "#205e8d",
     text: "#f8fafc",
-    bar: "#22c55e",
+    musicBar: "#ffffff",
+    musicBarProgress: "#05458a",
+    musicBarProgressButton: "#05458a",
   },
   break: {
     background: "#5c377e",
     text: "#ecfeff",
-    bar: "#38bdf8",
+    musicBar: "#ffffff",
+    musicBarProgress: "#c52267",
+    musicBarProgressButton: "#c52267",
+  },
+  longbreak: {
+    background: "#d5db63",
+    text: "",
+    musicBar: "#c52267",
+    musicBarProgress: "#c52267",
+    musicBarProgressButton: "#22c55e",
   },
 };
