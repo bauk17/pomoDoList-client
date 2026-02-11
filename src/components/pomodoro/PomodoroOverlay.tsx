@@ -38,11 +38,13 @@ export default function PomodoroOverlay({ taskTitle, onClose }: Props) {
 
         <styled.PomodoroContainer>
           <styled.PomodoroTask>
-            <span style={{ marginBottom: 40, fontSize: 35 }}>
-              {pomodoro.mode === "focus" ? "Focus time" : "Break time"}
+            <span style={{ marginBottom: 45, fontSize: 45 }}>
+              {pomodoro.mode === "focus" && "Focus time"}
+              {pomodoro.mode === "longbreak" && "Long Break"}
+              {pomodoro.mode === "break" && "Break time"}
             </span>
-            <span style={{ fontSize: 45 }}>Task</span>
-            <span style={{ fontSize: 40, marginTop: 20 }}>{taskTitle}</span>
+
+            <span style={{ fontSize: 35, marginTop: 20 }}>{taskTitle}</span>
           </styled.PomodoroTask>
 
           <styled.PomodoroTimer>
@@ -59,8 +61,8 @@ export default function PomodoroOverlay({ taskTitle, onClose }: Props) {
             {!pomodoro.pomodoro
               ? "Start"
               : pomodoro.isRunning
-              ? "Pause"
-              : "Resume"}
+                ? "Pause"
+                : "Resume"}
           </styled.PomodoroButton>
         </styled.PomodoroContainer>
 

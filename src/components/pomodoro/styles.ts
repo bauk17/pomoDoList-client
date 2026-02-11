@@ -15,7 +15,8 @@ const pulse = keyframes`
 `;
 
 export const PomodoroWrapper = styled.div`
-  background: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.background};
+  transition: background-color 0.8s ease;
   position: absolute;
   display: flex;
   justify-content: center;
