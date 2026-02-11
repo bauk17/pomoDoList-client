@@ -35,6 +35,7 @@ export function TodoCreateTask({ onCreate }: Props) {
             if (e.key === "Enter") submit();
             if (e.key === "Escape") setOpen(false);
           }}
+          maxLength={50}
         />
       )}
     </styled.TodoNewTask>

@@ -34,6 +34,7 @@ export function TodoItem({
               onEdit(task.id, title);
               setEditing(false);
             }}
+            maxLength={50}
           />
         ) : (
           task.title
