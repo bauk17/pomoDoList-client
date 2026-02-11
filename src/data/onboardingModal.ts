@@ -3,8 +3,8 @@ export const onboardingSteps = [
     title: "Create your first task",
     description: `Start by creating a task you want to focus on
 `,
-    img: "onboarding/first_pomodolist_step.png",
-    imgWidth: 300,
+    img: "onboarding/tutorial1.gif",
+    imgWidth: 250,
     imgHeight: 100,
   },
   {
@@ -13,7 +13,7 @@ export const onboardingSteps = [
 
     Start one by clicking on the tomato icon
       `,
-    img: "onboarding/second_pomodolist_step.png",
+    img: "onboarding/tutorial2.gif",
     imgWidth: 600,
     imgHeight: 80,
   },
